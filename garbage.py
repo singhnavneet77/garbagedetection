@@ -1,13 +1,18 @@
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
-import cv2
-from ultralytics import YOLO 
+import cv2 
+from ultralytics import YOLO
 import av 
 from datetime import datetime
+from dotenv import load_dotenv
 from pymongo import MongoClient
+import os
+
+load_dotenv()
+database_url = os.getenv("MONGODB_API_KEY")
 
 # ------------------ MongoDB Connection ------------------
-MONGO_URI = "mongodb+srv://singhnavneet:NavneetKumar%4022@cluster0.ntuizp5.mongodb.net/" 
+MONGO_URI = database_url
 client = MongoClient(MONGO_URI)
 db = client["garbage_db"]
 collection = db["classified_garbage"]
